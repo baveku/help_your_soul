@@ -1,17 +1,16 @@
 library corelib;
 
 import 'dart:convert';
-
+import 'package:corelib/core/films/DTO/response/film_info.dart';
 import 'package:corelib/service.dart';
-import 'package:rxdart/rxdart.dart';
-import 'model/film.dart';
+import 'DTO/response/get_films.dart';
 
 class FilmService extends Service {
-  Future<List<Film>> getFilms() {
-    return client.get('/films').then((value) => []);
+  Future<GetFilmsResponse> getFilms() {
+    return client.get('/films').then((value) => GetFilmsResponse.fromJson(value.data));
   }
 
-  Future<Film> fetchFilmInfo(String id) {
-    return client.get('/film', queryParameters: {'id': id}).then((value) => Film.fromJson(jsonDecode(value.data)));
+  Future<FilmInfoResponse> fetchFilmInfo(String id) {
+    return client.get('/film', queryParameters: {'id': id}).then((value) => FilmInfoResponse.fromJson(value.data));
   }
 }

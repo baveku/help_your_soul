@@ -3,7 +3,7 @@ import '../model/film.dart';
 import './index.dart';
 
 class FilmLocalRepository implements IFilmRepository {
-  Map<String, FilmModel> films;
+  Map<String, Film> films;
 
   @override
   Future<List<int>> fetchFilms() {
@@ -11,7 +11,7 @@ class FilmLocalRepository implements IFilmRepository {
     throw UnimplementedError();
   }
 
-  updateFilms(FilmModel film) {
+  updateFilms(Film film) {
     films[film.id] = film;
   }
 }
