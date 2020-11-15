@@ -39,4 +39,5 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
-*.g.dart
+submodules/**/*.g.dart
+submodules/**/*.config.dart
