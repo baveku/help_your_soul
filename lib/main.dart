@@ -1,19 +1,22 @@
+import 'package:corelib/core/films/bloc/state.dart';
 import 'package:flutter/material.dart';
 import 'package:corelib/corelib.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  CoreLib.create();
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CoreLib.create();
+  final appInjector = InjectorWidget(child: MyApp());
+  runApp(appInjector);
 }
-@Injectable()
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: ,
+      title: 'My APp',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -54,32 +57,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    FilmCubit filmBloc = InjectorWidget.of(context).injector.get<FilmCubit>();
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: BlocBuilder(builder: (context, state) => Text('$state'), buildWhen: (previous, current) => current != previous, cubit: filmBloc),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -104,15 +89,20 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            BlocBuilder(
+              builder: (context, state) => Text(
+                '$state',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              cubit: filmBloc,
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          filmBloc.increment();
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

@@ -1,11 +1,10 @@
 import 'package:corelib/core/films/model/film.dart';
-
-enum FilmEvent {
-  fetch,
-  filmInfo,
-}
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilmState {
   List<Film> films;
-  FilmState(this.films);
+  int counter;
+
+  FilmState(this.films) : counter = 0;
 }

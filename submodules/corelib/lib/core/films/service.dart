@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 @LazySingleton()
 class FilmService extends Service {
   ApiProvider client;
-  FilmService(@Named.from(ApiProvider) this.client);
+  FilmService(this.client);
 
   Future<GetFilmsResponse> getFilms() {
     return client.get('/films').then((value) => GetFilmsResponse.fromJson(value.data));

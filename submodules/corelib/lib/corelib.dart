@@ -1,29 +1,37 @@
 library corelib;
 
-import 'package:corelib/corelib.config.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
 
+import 'injectable.dart';
+
+export 'injectable.dart';
 export 'package:corelib/type.dart';
 export 'package:corelib/service.dart';
 export 'package:corelib/core/films/repository.dart';
 export 'package:corelib/core/films/service.dart';
-export 'package:corelib/core/films/bloc/filmbloc.dart';
-
-// Define Public Function
-
-final container = GetIt.instance;
+export 'package:corelib/core/films/bloc/film_cubit.dart';
 
 class CoreLib {
-  static create() {
-    configureDependencies();
+  static create() async {
+    await configureDependencies();
   }
 }
 
-@InjectableInit(
-  initializerName: r'$initGetIt', // default
-  preferRelativeImports: true, // default
-  asExtension: false, // default
-  generateForDir: ['gen'],
-)
-void configureDependencies() => $initGetIt(container);
+class InjectorWidget extends InheritedWidget {
+  InjectorWidget({
+    Key key,
+    @required Widget child,
+  })  : assert(child != null),
+        super(key: key, child: child);
+
+  static InjectorWidget of(BuildContext context) {
+    // ignore: deprecated_member_use
+    return context.dependOnInheritedWidgetOfExactType(aspect: InjectorWidget);
+  }
+
+  GetIt get injector => GetIt.instance;
+
+  @override
+  bool updateShouldNotify(InjectorWidget old) => false;
+}

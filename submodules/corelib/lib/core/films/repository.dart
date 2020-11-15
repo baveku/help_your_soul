@@ -5,6 +5,5 @@ import 'package:injectable/injectable.dart';
 @Injectable()
 @Singleton()
 class FilmRepository extends Repository<FilmService> {
-  @factoryMethod
-  factory FilmRepository.from(FilmService service) => FilmRepository(service);
+  FilmRepository(FilmService service) : super(service);
 }
