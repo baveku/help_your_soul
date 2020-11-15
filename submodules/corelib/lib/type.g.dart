@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'response.dart';
+part of 'type.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-APIResponse<T> _$APIResponseFromJson<T>(
+HYResponse<T> _$HYResponseFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object json) fromJsonT,
 ) {
-  return APIResponse<T>(
+  return HYResponse<T>(
     json['code'] as int,
     json['message'] as String,
     fromJsonT(json['data']),
   );
 }
 
-Map<String, dynamic> _$APIResponseToJson<T>(
-  APIResponse<T> instance,
+Map<String, dynamic> _$HYResponseToJson<T>(
+  HYResponse<T> instance,
   Object Function(T value) toJsonT,
 ) =>
     <String, dynamic>{

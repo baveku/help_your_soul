@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:corelib/corelib.dart';
+import 'package:injectable/injectable.dart';
 
 void main() {
-  CoreLib.configure();
+  CoreLib.create();
   runApp(MyApp());
 }
-
+@Injectable()
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: ,
       theme: ThemeData(
         // This is the theme of your application.
         //
