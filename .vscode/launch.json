@@ -5,16 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "help_your_soul",
+            "name": "main",
             "request": "launch",
             "type": "dart",
             "preLaunchTask": "prebuild"
         },
         {
-            "name": "corelib",
-            "cwd": "submodules/corelib",
+            "name": "profile",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "flutterMode": "profile"
         }
     ]
 }
