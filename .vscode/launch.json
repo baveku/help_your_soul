@@ -5,22 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "build",
+            "name": "main",
             "request": "launch",
             "type": "dart",
-            "preLaunchTask": "gencode"
+            "preLaunchTask": "prebuild"
         },
         {
-            "name": "corelib",
-            "cwd": "submodules/corelib",
+            "name": "profile",
             "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "dev",
-            "request": "attach",
             "type": "dart",
-            "preLaunchTask": "core_watch"
-        },
+            "flutterMode": "profile"
+        }
     ]
 }

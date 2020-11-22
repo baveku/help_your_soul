@@ -4,21 +4,20 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "gencode",
+            "label": "prebuild",
             "type": "shell",
+            "command": "flutter pub run build_runner build",
             "options": {
-                "cwd": "submodules/corelib",
-            },
-            "command": "flutter pub run build_runner build --delete-conflicting-outputs",
-            
+                "cwd": "submodules/corelib"
+            }
         },
         {
-            "label": "core_watch",
+            "label": "watch-corelib",
             "type": "shell",
+            "command": "flutter pub run build_runner watch",
             "options": {
-                "cwd": "submodules/corelib",
-            },
-            "command": "flutter pub run build_runner watch --delete-conflicting-outputs",
+                "cwd": "submodules/corelib"
+            }
         }
     ]
 }
